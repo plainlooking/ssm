@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luo.mapper.BookMapper">
+    <!-- int addBook(Books books);-->
+    <insert id="addBook" parameterType="com.luo.pojo.Books">
+        insert into ssmbuild.books (bookName, bookCounts, detail)
+        values (#{bookName}, #{bookCounts}, #{detail})
+    </insert>
+
+    <!--int deleteBookById(int id);-->
+    <delete id="deleteBookById" parameterType="int">
+        delete
+        from ssmbuild.books
+        where bookID = #{bookID}
+    </delete>
+
+    <!--int updateBook(Books books);-->
+    <update id="updateBook" parameterType="Books">
+        update ssmbuild.books
+        set bookName=#{bookName}, bookCounts=#{bookCounts}, detail=#{detail}
+        where bookID=#{bookID}
+    </update>
+
+    <!--Books queryBookById(int id);-->
+    <select id="queryBookById" parameterType="Books" resultType="com.luo.pojo.Books">
+        select *
+        from ssmbuild.books
+        where bookID = #{bookID}
+    </select>
+
+    <!--List<Books> queryAllBook();-->
+    <select id="queryAllBook" parameterType="Books" resultType="com.luo.pojo.Books">
+        select *
+        from ssmbuild.books
+    </select>
+</mapper>
